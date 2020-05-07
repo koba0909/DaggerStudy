@@ -2,6 +2,7 @@ package com.testcode.btyisu.ditest
 
 import com.testcode.btyisu.ditest.basic.MyClass
 import com.testcode.btyisu.ditest.basic.MyComponent
+import com.testcode.btyisu.ditest.injection.PersonB
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -35,5 +36,20 @@ class ExampleUnitTest {
         assertNotNull(str)
 
         println("after inject str : $str")
+    }
+
+    @Test
+    fun injection(){
+        val personComponent = DaggerPersonComponent.create()
+
+        val personA = personComponent.getPersonA()
+        println("name : ${personA.name}, age : ${personA.age}")
+
+        val personB = PersonB(null, null)
+        DaggerPersonComponent.create()
+            .inject(personB)
+
+        println("name : ${personB.name}, age : ${personB.age}")
+
     }
 }
