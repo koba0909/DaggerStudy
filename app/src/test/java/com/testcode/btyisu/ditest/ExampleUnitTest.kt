@@ -1,5 +1,7 @@
 package com.testcode.btyisu.ditest
 
+import com.testcode.btyisu.ditest.basic.MyClass
+import com.testcode.btyisu.ditest.basic.MyComponent
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -19,5 +21,19 @@ class ExampleUnitTest {
     fun daggerTest(){
         var component: MyComponent = DaggerMyComponent.create()
         println(component.getString())
+    }
+
+    @Test
+    fun memberInjection(){
+        val myClass = MyClass()
+
+        DaggerMyComponent.create()
+            .inject(myClass)
+
+        val str = myClass.str
+
+        assertNotNull(str)
+
+        println("after inject str : $str")
     }
 }
