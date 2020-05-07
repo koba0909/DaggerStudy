@@ -1,0 +1,2 @@
+rootProject.name='DiTest'
+include ':app'
